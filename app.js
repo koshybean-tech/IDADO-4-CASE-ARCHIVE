@@ -1,3 +1,4 @@
+
 const records = [
   ["Moscow Police Department Investigation Reports","Document","Public Source","Internet Archive","https://archive.org/download/kohberger-investigation-documents","MPD, police reports, investigation","Publicly available Moscow Police Department investigation reports and supplements."],
   ["MPD Supplements 1–50","Document","Public Source","Internet Archive","https://archive.org/download/kohberger-investigation-documents","MPD, supplements, 1-50","First indexed group of MPD investigation report supplements."],
@@ -24,11 +25,23 @@ function toggleNav() {
   n.style.display = n.classList.contains("open") ? "flex" : "";
 }
 
+function escapeHtml(value) {
+  return String(value ?? "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
 function renderArchive() {
   const box = document.getElementById("archiveGrid");
   if (!box) return;
 
-  const q = (document.getElementById("search")?.value || "").toLowerCase();
+  const q = (document.getElementById("search")?.value || "")
+    .toLowerCase()
+    .trim();
+
   const cat = document.getElementById("category")?.value || "";
   const status = document.getElementById("status")?.value || "";
 
@@ -38,18 +51,38 @@ function renderArchive() {
     (!status || r[2] === status)
   );
 
-  box.innerHTML = list.map(r => `
-    <article class="card">
-      <span class="pill">${r[1]}</span>
-      <h3>${r[0]}</h3>
-      <p>${r[6]}</p>
-      <div class="small">
-        <strong>Status:</strong> ${r[2]}<br>
-        <strong>Source:</strong> ${r[3]}
-      </div>
-      ${r[4] ? `<p><a href="${r[4]}" target="_blank" rel="noopener">Open source archive →</a></p>` : ""}
-    </article>
-  `).join("") || '<div class="empty">No matching archive records yet.</div>';
+  box.innerHTML = list.map(r => {
+    const title = escapeHtml(r[0]);
+    const category = escapeHtml(r[1]);
+    const recordStatus = escapeHtml(r[2]);
+    const source = escapeHtml(r[3]);
+    const description = escapeHtml(r[6]);
+
+    return `
+      <article class="card">
+        <span class="pill">${category}</span>
+        <h3>${title}</h3>
+        <p>${description}</p>
+
+        <div class="small">
+          <strong>Status:</strong> ${recordStatus}<br>
+          <strong>Source:</strong> ${source}
+        </div>
+
+        ${
+          r[4]
+            ? `<p>
+                <a href="${r[4]}"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                   Open source archive →
+                </a>
+              </p>`
+            : ""
+        }
+      </article>
+    `;
+  }).join("") || '<div class="empty">No matching archive records yet.</div>';
 }
 
 async function submitToForminit(event) {
@@ -80,19 +113,23 @@ async function submitToForminit(event) {
     return;
   }
 
-  button.disabled = true;
-  button.textContent = "Sending...";
+  if (button) {
+    button.disabled = true;
+    button.textContent = "Sending...";
+  }
 
   try {
     const formData = new FormData(form);
 
-    const { data, error } = await forminit.submit(
+    const result = await forminit.submit(
       FORM_ID,
       formData
     );
 
-    if (error) {
-      throw new Error(error.message || "Submission failed.");
+    if (result?.error) {
+      throw new Error(
+        result.error.message || "Submission failed."
+      );
     }
 
     if (message) {
@@ -103,39 +140,64 @@ async function submitToForminit(event) {
 
     form.reset();
 
-    console.log("Forminit submission:", data);
+    console.log(
+      "Forminit submission:",
+      result?.data
+    );
 
   } catch (err) {
-    console.error(err);
+    console.error(
+      "Forminit submission error:",
+      err
+    );
 
     if (errorBox) {
       errorBox.textContent =
-        err.message || "We couldn't send the submission. Please try again.";
+        err?.message ||
+        "We couldn't send the submission. Please try again.";
+
       errorBox.hidden = false;
     }
 
   } finally {
-    button.disabled = false;
-    button.textContent = "Send for administrator review";
+    if (button) {
+      button.disabled = false;
+      button.textContent =
+        "Send for administrator review";
+    }
   }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+
   renderArchive();
 
   document
     .getElementById("search")
-    ?.addEventListener("input", renderArchive);
+    ?.addEventListener(
+      "input",
+      renderArchive
+    );
 
   document
     .getElementById("category")
-    ?.addEventListener("change", renderArchive);
+    ?.addEventListener(
+      "change",
+      renderArchive
+    );
 
   document
     .getElementById("status")
-    ?.addEventListener("change", renderArchive);
+    ?.addEventListener(
+      "change",
+      renderArchive
+    );
 
   document
     .getElementById("submissionForm")
-    ?.addEventListener("submit", submitToForminit);
+    ?.addEventListener(
+      "submit",
+      submitToForminit
+    );
+
 });
