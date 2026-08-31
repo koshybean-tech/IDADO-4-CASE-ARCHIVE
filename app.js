@@ -157,3 +157,36 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("category")?.addEventListener("change", renderArchive);
   document.getElementById("status")?.addEventListener("change", renderArchive);
 });
+const additionalSources = [
+  {
+    title: "Idaho State Police Moscow Investigation Records",
+    category: "Document",
+    status: "Public Source",
+    source: "Idaho State Police",
+    url: "https://isp.idaho.gov/Moscow/",
+    tags: ["ISP", "Moscow", "public records", "investigation"],
+    description: "Official Idaho State Police page for publicly released records related to the Moscow homicide investigation."
+  },
+  {
+    title: "Idaho Courts Online Records",
+    category: "Court Filing",
+    status: "Public Source",
+    source: "Idaho Judicial Branch",
+    url: "https://icourt.idaho.gov/",
+    tags: ["court", "Idaho", "case records"],
+    description: "Official Idaho Judicial Branch access point for public court case information and records."
+  },
+  {
+    title: "Kohberger Criminal Case CR01-24-31665",
+    category: "Court Filing",
+    status: "Public Source",
+    source: "Idaho Judicial Branch",
+    url: "https://icourt.idaho.gov/",
+    tags: ["CR01-24-31665", "court", "case"],
+    description: "Official court-record source for the criminal case associated with Bryan Kohberger."
+  }
+];
+
+records.push(...additionalSources);
+
+document.addEventListener("DOMContentLoaded", renderArchive);
