@@ -3,9 +3,9 @@ const records = [
   ["MPD Supplements 1–50","Document","Public Source","Internet Archive","https://archive.org/download/kohberger-investigation-documents","MPD, supplements, 1-50","First indexed group of MPD investigation report supplements."],
   ["MPD Supplements 51–100","Document","Public Source","Internet Archive","https://archive.org/download/kohberger-investigation-documents","MPD, supplements, 51-100","Second indexed group of MPD investigation report supplements."],
   ["MPD Supplements 101–150","Document","Public Source","Internet Archive","https://archive.org/download/kohberger-investigation-documents","MPD, supplements, 101-150","Third indexed group of MPD investigation report supplements."],
-  ["MPD Supplements 151–200","Document","Public Source","Internet Archive","MPD, supplements, 151-200","Fourth indexed group of MPD investigation report supplements."],
-  ["MPD Supplements 201–250","Document","Public Source","Internet Archive","MPD, supplements, 201-250","Fifth indexed group of MPD investigation report supplements."],
-  ["MPD Supplements 251–300","Document","Public Source","Internet Archive","MPD, supplements, 251-300","Sixth indexed group of MPD investigation report supplements."],
+  ["MPD Supplements 151–200","Document","Public Source","Internet Archive","https://archive.org/download/kohberger-investigation-documents","MPD, supplements, 151-200","Fourth indexed group of MPD investigation report supplements."],
+  ["MPD Supplements 201–250","Document","Public Source","Internet Archive","https://archive.org/download/kohberger-investigation-documents","MPD, supplements, 201-250","Fifth indexed group of MPD investigation report supplements."],
+  ["MPD Supplements 251–300","Document","Public Source","Internet Archive","https://archive.org/download/kohberger-investigation-documents","MPD, supplements, 251-300","Sixth indexed group of MPD investigation report supplements."],
   ["MPD Supplements 301–314","Document","Public Source","Internet Archive","https://archive.org/download/kohberger-investigation-documents","MPD, supplements, 301-314","Final indexed group of MPD investigation report supplements."],
   ["Court Filings Collection","Court Filing","Public Source","Idaho Judicial Branch","https://icourt.idaho.gov/","court, filings, records","Publicly available Idaho court filings and related legal records."],
   ["Idaho State Police Moscow Investigation Records","Document","Public Source","Idaho State Police","https://isp.idaho.gov/Moscow/","ISP, Moscow, public records","Official Idaho State Police source for released Moscow investigation records."],
@@ -13,7 +13,8 @@ const records = [
   ["Video and Audio Index","Video & Audio","Unverified","Archive index","","video, audio, media","Index for source-linked video and audio material."]
 ];
 
-const FORMINIT_FORM_ID = "97eq4qtdj4r";
+const FORM_ID = "97eq4qtdj4r";
+const forminit = new Forminit();
 
 function toggleNav() {
   const n = document.getElementById("nav");
@@ -51,62 +52,66 @@ function renderArchive() {
   `).join("") || '<div class="empty">No matching archive records yet.</div>';
 }
 
-async function submitToForminit(e) {
-  e.preventDefault();
+async function submitToForminit(event) {
+  event.preventDefault();
 
-  const form = e.target;
+  const form = event.target;
   const button = form.querySelector('button[type="submit"]');
   const message = document.getElementById("submitMessage");
-  const error = document.getElementById("submitError");
+  const errorBox = document.getElementById("submitError");
   const file = document.getElementById("submissionFile")?.files?.[0];
 
-  if (message) message.hidden = true;
-  if (error) error.hidden = true;
+  if (message) {
+    message.hidden = true;
+    message.textContent = "";
+  }
+
+  if (errorBox) {
+    errorBox.hidden = true;
+    errorBox.textContent = "";
+  }
 
   if (file && file.size > 25 * 1024 * 1024) {
-    if (error) {
-      error.textContent =
-        "That file is larger than 25 MB. Please submit a smaller file.";
-      error.hidden = false;
+    if (errorBox) {
+      errorBox.textContent =
+        "That file is larger than Forminit's 25 MB upload limit.";
+      errorBox.hidden = false;
     }
     return;
   }
 
   button.disabled = true;
-  button.textContent = "Uploading…";
+  button.textContent = "Sending...";
 
   try {
     const formData = new FormData(form);
 
-    const result = await forminit.submit(
-      FORMINIT_FORM_ID,
+    const { data, error } = await forminit.submit(
+      FORM_ID,
       formData
     );
 
-    if (result.error) {
-      throw new Error(result.error.message || "Submission failed.");
+    if (error) {
+      throw new Error(error.message || "Submission failed.");
     }
 
     if (message) {
       message.textContent =
-        "Got it! Your material was submitted for administrator review.";
+        "Submission received! It has been sent for administrator review.";
       message.hidden = false;
     }
 
     form.reset();
 
-    console.log(
-      "Submission received:",
-      result.data?.hashId || result.data
-    );
+    console.log("Forminit submission:", data);
 
   } catch (err) {
-    console.error("Forminit submission error:", err);
+    console.error(err);
 
-    if (error) {
-      error.textContent =
-        "We couldn't send the submission. Please try again.";
-      error.hidden = false;
+    if (errorBox) {
+      errorBox.textContent =
+        err.message || "We couldn't send the submission. Please try again.";
+      errorBox.hidden = false;
     }
 
   } finally {
