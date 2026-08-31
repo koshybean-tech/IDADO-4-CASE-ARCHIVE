@@ -47,9 +47,9 @@
       <input
         id="search"
         placeholder="Search documents, people, tags, or events…"
-        oninput="renderArchive()"
+        autocomplete="off"
       >
-      <button onclick="renderArchive()">Search</button>
+      <button type="button" onclick="renderArchive()">Search</button>
     </div>
 
     <p class="notice">
@@ -74,21 +74,21 @@
 
   <div class="filters">
 
-    <select id="category" onchange="renderArchive()">
+    <select id="category">
       <option value="">All categories</option>
-      <option>Court Filing</option>
-      <option>Document</option>
-      <option>Photo & Evidence</option>
-      <option>Video & Audio</option>
-      <option>Transcript</option>
+      <option value="Court Filing">Court Filing</option>
+      <option value="Document">Document</option>
+      <option value="Photo & Evidence">Photo & Evidence</option>
+      <option value="Video & Audio">Video & Audio</option>
+      <option value="Transcript">Transcript</option>
     </select>
 
-    <select id="status" onchange="renderArchive()">
+    <select id="status">
       <option value="">All verification</option>
-      <option>Verified</option>
-      <option>Public Source</option>
-      <option>User Submission</option>
-      <option>Unverified</option>
+      <option value="Verified">Verified</option>
+      <option value="Public Source">Public Source</option>
+      <option value="User Submission">User Submission</option>
+      <option value="Unverified">Unverified</option>
     </select>
 
   </div>
@@ -200,113 +200,84 @@
     <article class="person">
       <span class="pill">VICTIM</span>
       <h3>Madison Mogen</h3>
-      <p>
-        University of Idaho student and victim of the November 13, 2022
-        Moscow homicides.
-      </p>
+      <p>University of Idaho student and victim of the November 13, 2022 Moscow homicides.</p>
       <p class="small"><strong>Source:</strong> Idaho State Police</p>
     </article>
 
     <article class="person">
       <span class="pill">VICTIM</span>
       <h3>Kaylee Goncalves</h3>
-      <p>
-        University of Idaho student and victim of the November 13, 2022
-        Moscow homicides.
-      </p>
+      <p>University of Idaho student and victim of the November 13, 2022 Moscow homicides.</p>
       <p class="small"><strong>Source:</strong> Idaho State Police</p>
     </article>
 
     <article class="person">
       <span class="pill">VICTIM</span>
       <h3>Xana Kernodle</h3>
-      <p>
-        University of Idaho student and victim of the November 13, 2022
-        Moscow homicides.
-      </p>
+      <p>University of Idaho student and victim of the November 13, 2022 Moscow homicides.</p>
       <p class="small"><strong>Source:</strong> Idaho State Police</p>
     </article>
 
     <article class="person">
       <span class="pill">VICTIM</span>
       <h3>Ethan Chapin</h3>
-      <p>
-        University of Idaho student and victim of the November 13, 2022
-        Moscow homicides.
-      </p>
+      <p>University of Idaho student and victim of the November 13, 2022 Moscow homicides.</p>
       <p class="small"><strong>Source:</strong> Idaho State Police</p>
     </article>
 
     <article class="person">
       <span class="pill">DEFENDANT</span>
       <h3>Bryan C. Kohberger</h3>
-      <p>
-        Defendant in Ada County criminal case CR01-24-31665.
-      </p>
+      <p>Defendant in Ada County criminal case CR01-24-31665.</p>
       <p class="small"><strong>Source:</strong> Idaho Judicial Branch</p>
     </article>
 
     <article class="person">
       <span class="pill">PROSECUTION</span>
       <h3>State of Idaho</h3>
-      <p>
-        The State of Idaho is the plaintiff in the criminal case.
-      </p>
+      <p>The State of Idaho is the plaintiff in the criminal case.</p>
       <p class="small"><strong>Source:</strong> Idaho Judicial Branch</p>
     </article>
 
     <article class="person">
       <span class="pill">DEFENSE</span>
       <h3>Anne Chere Taylor</h3>
-      <p>
-        Court-appointed attorney listed for Bryan C. Kohberger.
-      </p>
+      <p>Court-appointed attorney listed for Bryan C. Kohberger.</p>
       <p class="small"><strong>Source:</strong> Idaho Judicial Branch</p>
     </article>
 
     <article class="person">
       <span class="pill">PROSECUTION</span>
       <h3>William Thompson</h3>
-      <p>
-        Attorney listed for the State of Idaho.
-      </p>
+      <p>Attorney listed for the State of Idaho.</p>
       <p class="small"><strong>Source:</strong> Idaho Judicial Branch</p>
     </article>
 
     <article class="person">
       <span class="pill">AGENCY</span>
       <h3>Moscow Police Department</h3>
-      <p>
-        Local law-enforcement agency that investigated the Moscow homicides.
-      </p>
+      <p>Local law-enforcement agency that investigated the Moscow homicides.</p>
       <p class="small"><strong>Source:</strong> Idaho State Police</p>
     </article>
 
     <article class="person">
       <span class="pill">AGENCY</span>
       <h3>Idaho State Police</h3>
-      <p>
-        State investigative agency that assisted with the investigation.
-      </p>
+      <p>State investigative agency that assisted with the investigation.</p>
       <p class="small"><strong>Source:</strong> Idaho State Police</p>
     </article>
 
     <article class="person">
       <span class="pill">AGENCY</span>
       <h3>Federal Bureau of Investigation</h3>
-      <p>
-        Federal investigative partner in the multi-agency investigation.
-      </p>
+      <p>Federal investigative partner in the multi-agency investigation.</p>
       <p class="small"><strong>Source:</strong> Idaho State Police</p>
     </article>
 
     <article class="person">
       <span class="pill">AGENCY</span>
       <h3>Latah County Sheriff's Office</h3>
-      <p>
-        Law-enforcement agency identified in connection with investigative
-        records.
-      </p>
+      <p>Law-enforcement agency identified in connection with investigative records.</p>
       <p class="small"><strong>Source:</strong> Idaho State Police</p>
     </article>
 
@@ -326,9 +297,7 @@
     <p>
       Visitors can discuss documents and ask questions.
       Community posts are
-      <strong>
-        not verified facts, official records, or statements of the archive.
-      </strong>
+      <strong>not verified facts, official records, or statements of the archive.</strong>
     </p>
 
     <div class="community-card">
@@ -356,32 +325,43 @@
   <h2>Submit material for review</h2>
 
   <p>
-    Submissions do not become public automatically.
-    An administrator must review and approve them first.
+    Have a document, photograph, video, audio recording, or other
+    potentially useful material? Send it here. Nothing is added to
+    the public archive automatically.
   </p>
 
-  <form id="submissionForm" onsubmit="submitDemo(event)">
+  <form id="submissionForm" enctype="multipart/form-data">
 
     <label>
       Title
-      <input required name="title">
+      <input
+        required
+        name="fi-text-title"
+        maxlength="200"
+        placeholder="Give the material a clear title"
+      >
     </label>
 
     <label>
       Description
-      <textarea name="description" rows="4"></textarea>
+      <textarea
+        name="fi-text-description"
+        rows="5"
+        maxlength="5000"
+        placeholder="Tell us what this material is and why it may be useful."
+      ></textarea>
     </label>
 
     <div class="two">
 
       <label>
         Date
-        <input type="date" name="date">
+        <input type="date" name="fi-date-case-date">
       </label>
 
       <label>
         Category
-        <select name="category">
+        <select name="fi-select-category">
           <option>Document</option>
           <option>Court Filing</option>
           <option>Photo & Evidence</option>
@@ -395,7 +375,8 @@
     <label>
       Source
       <input
-        name="source"
+        name="fi-text-source"
+        maxlength="1000"
         placeholder="Where did this material come from?"
       >
     </label>
@@ -403,26 +384,46 @@
     <label>
       Tags
       <input
-        name="tags"
+        name="fi-text-tags"
+        maxlength="500"
         placeholder="comma, separated, tags"
+      >
+    </label>
+
+    <label>
+      Your email (optional)
+      <input
+        type="email"
+        name="fi-sender-email"
+        maxlength="254"
+        placeholder="Only if you want us to contact you"
       >
     </label>
 
     <label>
       File
       <input
+        id="submissionFile"
         type="file"
-        name="file"
-        accept=".pdf,.txt,.doc,.docx,.jpg,.jpeg,.png,.webp,.mp3,.wav,.mp4,.mov"
+        name="fi-file-submission"
+        accept=".pdf,.txt,.doc,.docx,.jpg,.jpeg,.png,.webp,.gif,.mp3,.wav,.mp4,.mov"
       >
+      <span class="small">
+        Maximum file size: 25 MB.
+      </span>
     </label>
 
     <button class="button" type="submit">
       Send for administrator review
     </button>
 
-    <p id="submitMessage" class="success" hidden>
-      Demo submission received. It is marked pending review and is not public.
+    <p id="submitMessage" class="success" hidden></p>
+
+    <p id="submitError" class="error" hidden></p>
+
+    <p class="small">
+      By submitting material, you understand that it will be reviewed
+      before anything is published in the archive.
     </p>
 
   </form>
@@ -458,10 +459,8 @@
     </div>
 
     <p class="small">
-      This front-end dashboard is a foundation.
-      Secure authentication, database storage, file storage,
-      approval actions, duplicate detection, and audit logs must
-      be connected before this is used as a real administrator system.
+      Submissions are reviewed through the Forminit dashboard.
+      The public website does not automatically publish submitted material.
     </p>
 
   </div>
@@ -480,8 +479,8 @@
   </div>
 </footer>
 
-
+<script src="https://forminit.com/sdk/v1/forminit.js"></script>
 <script src="app.js"></script>
 
 </body>
-  </html>
+</html>
