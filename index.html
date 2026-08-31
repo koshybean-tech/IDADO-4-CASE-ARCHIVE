@@ -6,161 +6,482 @@
 <title>Idaho Case Archive</title>
 <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
+
 <header class="site-header">
   <div class="wrap header-inner">
-    <a class="brand" href="index.html"><span class="brand-mark">ICA</span><span>Idaho Case Archive</span></a>
+    <a class="brand" href="index.html">
+      <span class="brand-mark">ICA</span>
+      <span>Idaho Case Archive</span>
+    </a>
+
     <button class="menu" aria-label="Open navigation" onclick="toggleNav()">☰</button>
+
     <nav id="nav">
-      <a href="index.html">Home</a><a href="#archive">Archive</a><a href="#timeline">Timeline</a>
-      <a href="#people">People</a><a href="#community">Community</a><a href="#submit">Submit</a>
+      <a href="index.html">Home</a>
+      <a href="#archive">Archive</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#people">People</a>
+      <a href="#community">Community</a>
+      <a href="#submit">Submit</a>
       <a href="#admin">Admin</a>
     </nav>
   </div>
 </header>
 
 <main>
+
 <section class="hero">
   <div class="wrap">
     <p class="eyebrow">PUBLIC DOCUMENT & MEDIA ARCHIVE</p>
+
     <h1>Idaho Case Archive</h1>
-    <p class="lead">A searchable, organized place for publicly available case documents, media, timelines, and source material.</p>
-    <div class="searchbar"><input id="search" placeholder="Search documents, people, tags, or events…" oninput="renderArchive()"><button onclick="renderArchive()">Search</button></div>
-    <p class="notice"><strong>Archive note:</strong> Archive records are presented with source and verification labels. Community discussion is separate and is not an official record.</p>
+
+    <p class="lead">
+      A searchable, organized place for publicly available case documents,
+      media, timelines, and source material.
+    </p>
+
+    <div class="searchbar">
+      <input
+        id="search"
+        placeholder="Search documents, people, tags, or events…"
+        oninput="renderArchive()"
+      >
+      <button onclick="renderArchive()">Search</button>
+    </div>
+
+    <p class="notice">
+      <strong>Archive note:</strong>
+      Archive records are presented with source and verification labels.
+      Community discussion is separate and is not an official record.
+    </p>
   </div>
 </section>
 
+
 <section class="wrap section" id="archive">
-  <div class="section-head"><div><p class="eyebrow">ARCHIVE</p><h2>Browse the collection</h2></div><a class="button secondary" href="#submit">Submit material</a></div>
-  <div class="filters">
-    <select id="category" onchange="renderArchive()"><option value="">All categories</option><option>Court Filing</option><option>Document</option><option>Photo & Evidence</option><option>Video & Audio</option><option>Transcript</option></select>
-    <select id="status" onchange="renderArchive()"><option value="">All verification</option><option>Verified</option><option>Public Source</option><option>User Submission</option><option>Unverified</option></select>
+
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">ARCHIVE</p>
+      <h2>Browse the collection</h2>
+    </div>
+
+    <a class="button secondary" href="#submit">Submit material</a>
   </div>
+
+  <div class="filters">
+
+    <select id="category" onchange="renderArchive()">
+      <option value="">All categories</option>
+      <option>Court Filing</option>
+      <option>Document</option>
+      <option>Photo & Evidence</option>
+      <option>Video & Audio</option>
+      <option>Transcript</option>
+    </select>
+
+    <select id="status" onchange="renderArchive()">
+      <option value="">All verification</option>
+      <option>Verified</option>
+      <option>Public Source</option>
+      <option>User Submission</option>
+      <option>Unverified</option>
+    </select>
+
+  </div>
+
   <div id="archiveGrid" class="cards"></div>
-</section> 
- <section class="wrap section" id="people">
+
+</section>
+
+
+<section class="band" id="timeline">
+
+  <div class="wrap section">
+
+    <p class="eyebrow">TIMELINE</p>
+    <h2>Case chronology</h2>
+
+    <div class="timeline">
+
+      <div>
+        <time>November 13, 2022</time>
+        <h3>Four University of Idaho students are murdered</h3>
+        <p>
+          Madison Mogen, Kaylee Goncalves, Xana Kernodle, and Ethan Chapin
+          were murdered at an off-campus residence in Moscow, Idaho.
+        </p>
+        <p class="small">
+          <strong>Source:</strong> Idaho State Police public investigation page
+        </p>
+      </div>
+
+      <div>
+        <time>November 2022</time>
+        <h3>Multi-agency investigation begins</h3>
+        <p>
+          The investigation expanded to include local, state, and federal
+          law-enforcement partners.
+        </p>
+        <p class="small">
+          <strong>Source:</strong> Idaho State Police
+        </p>
+      </div>
+
+      <div>
+        <time>December 30, 2022</time>
+        <h3>Bryan Kohberger is arrested</h3>
+        <p>
+          Bryan Kohberger was arrested in Pennsylvania and subsequently
+          charged in connection with the Moscow homicides.
+        </p>
+        <p class="small">
+          <strong>Source:</strong> Idaho State Police
+        </p>
+      </div>
+
+      <div>
+        <time>January 2023</time>
+        <h3>Criminal proceedings continue in Latah County</h3>
+        <p>
+          Public court proceedings continued in connection with the
+          criminal case.
+        </p>
+        <p class="small">
+          <strong>Source:</strong> Idaho Judicial Branch
+        </p>
+      </div>
+
+      <div>
+        <time>July 23, 2025</time>
+        <h3>Guilty plea and sentencing</h3>
+        <p>
+          Kohberger pleaded guilty to four counts of first-degree murder
+          and one count of burglary and was sentenced in the case.
+        </p>
+        <p class="small">
+          <strong>Source:</strong> Idaho State Police
+        </p>
+      </div>
+
+      <div>
+        <time>August 18, 2025</time>
+        <h3>Idaho State Police releases Moscow homicide records</h3>
+        <p>
+          Idaho State Police announced a public-records page for records
+          related to the Moscow homicide investigation.
+        </p>
+        <p class="small">
+          <strong>Source:</strong> Idaho State Police
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+
+<section class="wrap section" id="people">
+
   <p class="eyebrow">PEOPLE</p>
+
   <h2>People index</h2>
-  <p class="lead">Names are organized by documented role and tied to public sources.</p>
+
+  <p class="lead">
+    Names are organized by documented role and tied to public sources.
+  </p>
 
   <div class="people-grid">
 
     <article class="person">
       <span class="pill">VICTIM</span>
       <h3>Madison Mogen</h3>
-      <p>University of Idaho student and victim of the November 13, 2022 Moscow homicides.</p>
+      <p>
+        University of Idaho student and victim of the November 13, 2022
+        Moscow homicides.
+      </p>
       <p class="small"><strong>Source:</strong> Idaho State Police</p>
     </article>
 
     <article class="person">
       <span class="pill">VICTIM</span>
       <h3>Kaylee Goncalves</h3>
-      <p>University of Idaho student and victim of the November 13, 2022 Moscow homicides.</p>
+      <p>
+        University of Idaho student and victim of the November 13, 2022
+        Moscow homicides.
+      </p>
       <p class="small"><strong>Source:</strong> Idaho State Police</p>
     </article>
 
     <article class="person">
       <span class="pill">VICTIM</span>
       <h3>Xana Kernodle</h3>
-      <p>University of Idaho student and victim of the November 13, 2022 Moscow homicides.</p>
+      <p>
+        University of Idaho student and victim of the November 13, 2022
+        Moscow homicides.
+      </p>
       <p class="small"><strong>Source:</strong> Idaho State Police</p>
     </article>
 
     <article class="person">
       <span class="pill">VICTIM</span>
       <h3>Ethan Chapin</h3>
-      <p>University of Idaho student and victim of the November 13, 2022 Moscow homicides.</p>
+      <p>
+        University of Idaho student and victim of the November 13, 2022
+        Moscow homicides.
+      </p>
       <p class="small"><strong>Source:</strong> Idaho State Police</p>
     </article>
 
     <article class="person">
       <span class="pill">DEFENDANT</span>
       <h3>Bryan C. Kohberger</h3>
-      <p>Defendant in Ada County criminal case CR01-24-31665.</p>
+      <p>
+        Defendant in Ada County criminal case CR01-24-31665.
+      </p>
       <p class="small"><strong>Source:</strong> Idaho Judicial Branch</p>
     </article>
 
     <article class="person">
       <span class="pill">PROSECUTION</span>
       <h3>State of Idaho</h3>
-      <p>The State of Idaho is the plaintiff in the criminal case.</p>
+      <p>
+        The State of Idaho is the plaintiff in the criminal case.
+      </p>
       <p class="small"><strong>Source:</strong> Idaho Judicial Branch</p>
     </article>
 
     <article class="person">
       <span class="pill">DEFENSE</span>
       <h3>Anne Chere Taylor</h3>
-      <p>Court-appointed attorney listed for Bryan C. Kohberger.</p>
+      <p>
+        Court-appointed attorney listed for Bryan C. Kohberger.
+      </p>
       <p class="small"><strong>Source:</strong> Idaho Judicial Branch</p>
     </article>
 
     <article class="person">
       <span class="pill">PROSECUTION</span>
       <h3>William Thompson</h3>
-      <p>Attorney listed for the State of Idaho.</p>
+      <p>
+        Attorney listed for the State of Idaho.
+      </p>
       <p class="small"><strong>Source:</strong> Idaho Judicial Branch</p>
     </article>
 
     <article class="person">
       <span class="pill">AGENCY</span>
       <h3>Moscow Police Department</h3>
-      <p>Local law-enforcement agency that investigated the Moscow homicides.</p>
+      <p>
+        Local law-enforcement agency that investigated the Moscow homicides.
+      </p>
       <p class="small"><strong>Source:</strong> Idaho State Police</p>
     </article>
 
     <article class="person">
       <span class="pill">AGENCY</span>
       <h3>Idaho State Police</h3>
-      <p>State investigative agency that assisted with the investigation.</p>
+      <p>
+        State investigative agency that assisted with the investigation.
+      </p>
       <p class="small"><strong>Source:</strong> Idaho State Police</p>
     </article>
 
     <article class="person">
       <span class="pill">AGENCY</span>
       <h3>Federal Bureau of Investigation</h3>
-      <p>Federal investigative partner in the multi-agency investigation.</p>
+      <p>
+        Federal investigative partner in the multi-agency investigation.
+      </p>
       <p class="small"><strong>Source:</strong> Idaho State Police</p>
     </article>
 
     <article class="person">
       <span class="pill">AGENCY</span>
       <h3>Latah County Sheriff's Office</h3>
-      <p>Law-enforcement agency identified in connection with investigative records.</p>
+      <p>
+        Law-enforcement agency identified in connection with investigative
+        records.
+      </p>
       <p class="small"><strong>Source:</strong> Idaho State Police</p>
     </article>
 
   </div>
-</section> 
-  
-  
 
-<section class="wrap section" id="submit">
-  <p class="eyebrow">PUBLIC SUBMISSION</p><h2>Submit material for review</h2>
-  <p>Submissions do not become public automatically. An administrator must review and approve them first.</p>
-  <form id="submissionForm" onsubmit="submitDemo(event)">
-    <label>Title<input required name="title"></label>
-    <label>Description<textarea name="description" rows="4"></textarea></label>
-    <div class="two"><label>Date<input type="date" name="date"></label><label>Category<select name="category"><option>Document</option><option>Court Filing</option><option>Photo & Evidence</option><option>Video & Audio</option><option>Transcript</option></select></label></div>
-    <label>Source<input name="source" placeholder="Where did this material come from?"></label>
-    <label>Tags<input name="tags" placeholder="comma, separated, tags"></label>
-    <label>File<input type="file" name="file" accept=".pdf,.txt,.doc,.docx,.jpg,.jpeg,.png,.webp,.mp3,.wav,.mp4,.mov"></label>
-    <button class="button" type="submit">Send for administrator review</button>
-    <p id="submitMessage" class="success" hidden>Demo submission received. It is marked pending review and is not public.</p>
-  </form>
 </section>
 
-<section class="admin-section" id="admin"><div class="wrap section">
-  <p class="eyebrow">ADMINISTRATION</p><h2>Review dashboard</h2>
-  <div class="admin-grid">
-    <div class="stat"><b>0</b><span>Pending submissions</span></div>
-    <div class="stat"><b>0</b><span>Approved</span></div>
-    <div class="stat"><b>0</b><span>Reports</span></div>
+
+<section class="band" id="community">
+
+  <div class="wrap section">
+
+    <p class="eyebrow">COMMUNITY</p>
+
+    <h2>Discussion, kept separate</h2>
+
+    <p>
+      Visitors can discuss documents and ask questions.
+      Community posts are
+      <strong>
+        not verified facts, official records, or statements of the archive.
+      </strong>
+    </p>
+
+    <div class="community-card">
+
+      <span class="pill">COMMUNITY</span>
+
+      <h3>Discussion area coming online</h3>
+
+      <p>
+        The interface is ready for a database-backed community system
+        with accounts, comments, and reporting.
+      </p>
+
+    </div>
+
   </div>
-  <p class="small">This front-end dashboard is a foundation. Secure authentication, database storage, file storage, approval actions, duplicate detection, and audit logs must be connected before this is used as a real administrator system.</p>
-</div></section>
+
+</section>
+
+
+<section class="wrap section" id="submit">
+
+  <p class="eyebrow">PUBLIC SUBMISSION</p>
+
+  <h2>Submit material for review</h2>
+
+  <p>
+    Submissions do not become public automatically.
+    An administrator must review and approve them first.
+  </p>
+
+  <form id="submissionForm" onsubmit="submitDemo(event)">
+
+    <label>
+      Title
+      <input required name="title">
+    </label>
+
+    <label>
+      Description
+      <textarea name="description" rows="4"></textarea>
+    </label>
+
+    <div class="two">
+
+      <label>
+        Date
+        <input type="date" name="date">
+      </label>
+
+      <label>
+        Category
+        <select name="category">
+          <option>Document</option>
+          <option>Court Filing</option>
+          <option>Photo & Evidence</option>
+          <option>Video & Audio</option>
+          <option>Transcript</option>
+        </select>
+      </label>
+
+    </div>
+
+    <label>
+      Source
+      <input
+        name="source"
+        placeholder="Where did this material come from?"
+      >
+    </label>
+
+    <label>
+      Tags
+      <input
+        name="tags"
+        placeholder="comma, separated, tags"
+      >
+    </label>
+
+    <label>
+      File
+      <input
+        type="file"
+        name="file"
+        accept=".pdf,.txt,.doc,.docx,.jpg,.jpeg,.png,.webp,.mp3,.wav,.mp4,.mov"
+      >
+    </label>
+
+    <button class="button" type="submit">
+      Send for administrator review
+    </button>
+
+    <p id="submitMessage" class="success" hidden>
+      Demo submission received. It is marked pending review and is not public.
+    </p>
+
+  </form>
+
+</section>
+
+
+<section class="admin-section" id="admin">
+
+  <div class="wrap section">
+
+    <p class="eyebrow">ADMINISTRATION</p>
+
+    <h2>Review dashboard</h2>
+
+    <div class="admin-grid">
+
+      <div class="stat">
+        <b>0</b>
+        <span>Pending submissions</span>
+      </div>
+
+      <div class="stat">
+        <b>0</b>
+        <span>Approved</span>
+      </div>
+
+      <div class="stat">
+        <b>0</b>
+        <span>Reports</span>
+      </div>
+
+    </div>
+
+    <p class="small">
+      This front-end dashboard is a foundation.
+      Secure authentication, database storage, file storage,
+      approval actions, duplicate detection, and audit logs must
+      be connected before this is used as a real administrator system.
+    </p>
+
+  </div>
+
+</section>
+
 </main>
 
-<footer><div class="wrap"><strong>Idaho Case Archive</strong><span>Public archive interface • Community content is separate from official records</span></div></footer>
+
+<footer>
+  <div class="wrap">
+    <strong>Idaho Case Archive</strong>
+    <span>
+      Public archive interface • Community content is separate from official records
+    </span>
+  </div>
+</footer>
+
+
 <script src="app.js"></script>
+
 </body>
-</html>
+  </html>
